@@ -1,0 +1,30 @@
+[tool.black]
+line-length = 79
+target-version = ["py311"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | venv
+  | \.env
+  | \.flake8
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 79
+known_third_party = ["django"]  # Add other third-party libraries as needed
+src_paths = ["src", "apps"]  # Adjust paths as per your project structure
+
+[tool.flake8]
+max-line-length = 79
+extend-ignore = ["E203", "W503"]  # For compatibility with Black (optional)
