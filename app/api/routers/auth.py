@@ -1,8 +1,7 @@
-from fastapi import FastAPI , APIRouter
-from pydantic import BaseModel, EmailStr
 from typing import Optional
-from datetime import datetime
-import csv, os
+
+from fastapi import APIRouter
+from pydantic import BaseModel, EmailStr
 
 
 class OwnerCreate(BaseModel):
@@ -10,8 +9,10 @@ class OwnerCreate(BaseModel):
     password: str
     full_name: Optional[str] = None
     phone: Optional[str] = None
-    
+
+
 router = APIRouter()
+
 
 @router.post("/register/owner")
 def create_owner(owner: OwnerCreate):
