@@ -18,8 +18,8 @@ venv/
 *.sublime-workspace
 
 # Environment variables
-.env
-*.env
+# .env
+# *.env
 
 # Database files
 *.sqlite3
@@ -38,5 +38,3 @@ build/
 # Operating System files
 .DS_Store
 Thumbs.db
-
-.dockerignore: stat .env: file does not exist
