@@ -38,3 +38,5 @@ build/
 # Operating System files
 .DS_Store
 Thumbs.db
+
+.dockerignore: stat .env: file does not exist
