@@ -18,8 +18,8 @@ venv/
 *.sublime-workspace
 
 # Environment variables
-# .env
-# *.env
+.env
+*.env
 
 # Database files
 *.sqlite3
