@@ -1,3 +1,4 @@
+
 Awesome idea. Let’s blueprint a clean, scalable backend you can start coding right away.
 
 # Technical Design – Restaurant Platform (Backend)
