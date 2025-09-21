@@ -5,4 +5,4 @@ class Base(DeclarativeBase):
     pass
 
 
-from app.models import menu, restaurant, user  # noqa
+from app.models import category, customer, menu, restaurant, user  # noqa

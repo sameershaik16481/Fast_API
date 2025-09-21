@@ -15,3 +15,4 @@ class Restaurant(Base):
     is_deleted = Column(Boolean, default=False)
 
     owner = relationship("User", back_populates="restaurants")
+    categories = relationship("Category", back_populates="restaurant")

@@ -1,5 +1,7 @@
 from typing import Optional
 
+from app.api.dependencies import get_db
+
 # import bcrypt
 from app.core.security import (
     create_access_token,
@@ -8,7 +10,7 @@ from app.core.security import (
 )
 
 # from app.core import security
-from app.db.session import SessionLocal
+# from app.db.session import SessionLocal
 from app.models.user import User
 from app.schemas.user import UserCreate, UserRead
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -16,13 +18,12 @@ from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel, EmailStr
 from sqlalchemy.orm import Session
 
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# def get_db():
+#     db = SessionLocal()
+#     try:
+#         yield db
+#     finally:
+#         db.close()
 
 
 class OwnerCreate(BaseModel):
