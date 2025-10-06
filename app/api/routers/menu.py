@@ -61,6 +61,36 @@ def list_menu_items(
     )
 
 
+# update_menu_item :-
+@router.put("/{item_id}", response_model=MenuItemOut)
+def update_menu_item(
+    item_id: int,
+    item: MenuItemCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    menu_item = (
+        db.query(MenuItem)
+        .join(Category)
+        .join(Restaurant)
+        .filter(
+            MenuItem.id == item_id,
+            Restaurant.user_id == current_user.id,
+            MenuItem.is_deleted.is_(False),
+        )
+        .first()
+    )
+    if not menu_item:
+        raise HTTPException(status_code=404, detail="Menu item not found")
+
+    menu_item.name = item.name
+    menu_item.price = item.price
+    menu_item.is_available = item.is_available
+    db.commit()
+    db.refresh(menu_item)
+    return menu_item
+
+
 # Soft delete menu item
 @router.delete("/{item_id}")
 def soft_delete_menu_item(

@@ -52,3 +52,29 @@ def list_categories(
         )
         .all()
     )
+
+
+@router.put("/{category_id}", response_model=CategoryOut)
+def update_category(
+    category_id: int,
+    category: CategoryCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    existing_category = (
+        db.query(Category)
+        .join(Restaurant)
+        .filter(
+            Category.id == category_id,
+            Restaurant.user_id == current_user.id,
+            Category.is_deleted.is_(False),
+        )
+        .first()
+    )
+    if not existing_category:
+        raise HTTPException(status_code=404, detail="Category not found")
+
+    existing_category.name = category.name
+    db.commit()
+    db.refresh(existing_category)
+    return existing_category
